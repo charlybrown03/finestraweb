@@ -1,0 +1,14 @@
+.form__container {
+  background-color: $color-background-header;
+  border-radius: 1rem;
+  border: double $color-black 1px;
+  padding: 5rem 2rem;
+  margin-top: 1rem;
+
+  .form-group {
+
+    label {
+      font-weight: bold;
+    }
+  }
+}

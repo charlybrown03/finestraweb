@@ -1,0 +1,15 @@
+header {
+  background-color: $color-background-header;
+  padding-top: 7rem;
+
+  .icon {
+    background-image: url("../images/logo.png");
+    background-size: 5rem;
+    position: absolute;
+    float: left;
+    height: 5rem;
+    left: 3rem;
+    top: 2rem;
+    width: 5rem;
+  }
+}

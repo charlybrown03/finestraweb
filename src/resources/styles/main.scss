@@ -1,0 +1,15 @@
+@import "~normalize-scss/sass/normalize";
+@include normalize();
+
+// Vendors
+@import "~bootstrap/scss/bootstrap";
+
+// Variables
+@import "variables";
+
+// Blocks
+@import "blocks/body";
+@import "blocks/header";
+@import "blocks/form";
+@import "blocks/section";
+@import "blocks/footer";

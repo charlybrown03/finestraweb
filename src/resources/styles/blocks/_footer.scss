@@ -1,0 +1,19 @@
+footer {
+  bottom: 0;
+  background-color: $color-black;
+  color: $color-white;
+  display: inline-block;
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0 1rem;
+  position: fixed;
+  width: 100%;
+
+  .text_company {
+    float: left;
+  }
+
+  .text_year {
+    float: right;
+  }
+}
