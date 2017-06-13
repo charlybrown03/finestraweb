@@ -1,6 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const GoogleFontsPlugin = require('google-fonts-webpack-plugin')
+
+const CHUNKS = {
+  vendor: 0,
+  app: 1
+}
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -57,10 +63,20 @@ module.exports = {
       hash: false,
       favicon: './resources/images/favicon.ico',
       filename: 'index.html',
-      inject: false,
+      inject: true,
+      chunks: [ 'vendor', 'app' ],
+      chunksSortMode: function (a, b) {
+        return CHUNKS[a.names[0]]
+      },
       minify: {
         collapseWhitespace: true
       }
+    }),
+    new GoogleFontsPlugin({
+      fonts: [
+        { family: 'Love Ya Like A Sister' },
+        { family: 'Tangerine' }
+      ]
     })
   ]
 }

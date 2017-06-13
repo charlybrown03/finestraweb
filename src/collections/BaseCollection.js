@@ -2,7 +2,7 @@ import Backbone from 'backbone'
 
 const BaseCollection = Backbone.Collection.extend({
 
-  baseUrl: 'http://localhost:8080',
+  baseUrl: 'http://finestra-wedding.tk:8080',
 
   endpoint: '',
 
