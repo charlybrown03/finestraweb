@@ -1,14 +1,44 @@
 header {
   background-color: $color-background-header;
-  padding-top: 7rem;
+  padding-top: 5rem;
+
+  .timon {
+    font-family: $secondary-font-family;
+    font-size: 3rem;
+    padding: 0 25%;
+    padding-bottom: 3rem;
+    text-align: justify;
+
+    .subtitle {
+      font-size: 2rem;
+      text-align: right;
+    }
+
+    .timon--icon {
+      background-image: $icon-timon;
+      background-repeat: no-repeat;
+      background-size: 6rem;
+      height: 6rem;
+      width: 6rem;
+      position: absolute;
+      left: 17%;
+      top: 5rem;
+
+    }
+
+  }
 
   .icon {
-    background-image: url("../images/logo.png");
+    background-image: $icon-logo;
+    background-repeat: no-repeat;
     background-size: 5rem;
-    position: absolute;
+    border: double $color-black;
+    border-radius: 100%;
     float: left;
     height: 5rem;
     left: 3rem;
+    position: absolute;
+    padding: 3rem;
     top: 2rem;
     width: 5rem;
   }
@@ -29,4 +59,22 @@ header {
       }
     }
   }
+}
+
+@include mq($from: xs, $until: lg) {
+
+  header {
+    padding-top: 10rem;
+
+    .timon {
+      padding-bottom: 0;
+
+      .timon--icon {
+        position: relative;
+        left: 0;
+        top: -5rem;
+      }
+    }
+  }
+
 }

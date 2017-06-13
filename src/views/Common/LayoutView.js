@@ -5,7 +5,6 @@ import LayoutViewTemplate from './templates/LayoutView.hbs'
 
 import HeaderView from '../Header/HeaderView'
 import FooterView from '../Footer/FooterView'
-import FormView from '../Form/FormView'
 
 const LayoutView = Marionette.View.extend({
 
@@ -35,7 +34,6 @@ const LayoutView = Marionette.View.extend({
   onRender () {
     this._renderRegion('header', new HeaderView())
     this._renderRegion('footer', new FooterView())
-    this._renderRegion('content', new FormView())
   },
 
   _renderRegion (region, view) {

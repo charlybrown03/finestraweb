@@ -1,6 +1,9 @@
 require('./resources/styles/main.scss')
 
+import Backbone from 'backbone'
 import Marionette from 'backbone.marionette'
+
+import routers from './routers'
 
 import LayoutView from './views/Common/LayoutView'
 
@@ -14,11 +17,25 @@ const Finestra = Marionette.Application.extend({
     replaceElement: true
   },
 
-  onStart () {
-    this._initializeStorage(this._startApplication.bind(this))
+  onBeforeStart () {
+    this.Routers = routers()
   },
 
-  _initializeStorage (callback) {
+  onStart () {
+    this._initializeStorage(null, this._startApplication.bind(this))
+  },
+
+  navigate: function (url, options = {}) {
+    var defaults = {
+      trigger: true
+    }
+
+    options = _.extend(defaults, options || {})
+
+    Backbone.history.navigate(url, options)
+  },
+
+  _initializeStorage (options, callback) {
     this.Storage = {
       Drinks: new DrinksCollection(),
       Complements: new ComplementsCollection()
@@ -34,6 +51,14 @@ const Finestra = Marionette.Application.extend({
 
   _startApplication () {
     this.showView(new LayoutView())
+
+    Backbone.history.start({
+      root: '/',
+      pushState: true,
+      silent: false
+    })
+
+    this.navigate('/')
   }
 
 })
