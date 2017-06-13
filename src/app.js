@@ -1,4 +1,4 @@
-import HolaLuz from './HolaLuz'
+import Finestra from './Finestra'
 
-const holaLuz = new HolaLuz()
-holaLuz.start()
+window.App = new Finestra()
+App.start()

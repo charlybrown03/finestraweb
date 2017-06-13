@@ -1,9 +1,6 @@
 import Marionette from 'backbone.marionette'
-import echarts from 'echarts'
 
 import HomeViewTemplate from './templates/HomeView.hbs'
-
-import chartJson from '../resources/json/chart.json'
 
 const HomeView = Marionette.View.extend({
 
@@ -12,9 +9,7 @@ const HomeView = Marionette.View.extend({
   template: HomeViewTemplate,
 
   ui: {
-    chart: '.echarts_container',
-    navs: '.nav-link',
-    description: '.description'
+    navs: '.nav-link'
   },
 
   events: {
@@ -22,11 +17,7 @@ const HomeView = Marionette.View.extend({
   },
 
   onRender () {
-    _.delay(() => {
-      this.chart = echarts.init(this.ui.chart[0])
-      this._processCurrentRange()
-      this._setListeners()
-    }, 100)
+
   },
 
   onDestroy () {
@@ -37,45 +28,16 @@ const HomeView = Marionette.View.extend({
     const value = e.currentTarget.dataset.value
     this._toggleNavActive(value)
 
-    this._processCurrentRange()
+    // TODO: Action on click nav
   },
 
   _destroyListeners () {
-    $(window).off('resize', this.chart.resize)
+    // TODO: Shutdown listeners
   },
 
   _getActiveValue () {
     const activeNav = _.find(this.ui.navs, nav => $(nav).hasClass('active'))
     return activeNav.dataset.value
-  },
-
-  _processCurrentRange () {
-    const value = this._getActiveValue()
-
-    const dataModel = this.collection.findWhere({ name: value })
-    this._renderChart(dataModel)
-  },
-
-  _renderChart (dataModel) {
-    let option = _.cloneDeep(chartJson)
-    option.title.text = dataModel.get('name')
-    option.tooltip.formatter = this._tooltipFormatter
-
-    _.each(dataModel.get('prices'), (value, key) => {
-      option.xAxis[0].data.push(`${key} - ${key + 1}`)
-      option.series[0].data.push(value)
-    })
-    this.chart.setOption(option)
-  },
-
-  _setListeners () {
-    if (!this.listeners) $(window).on('resize', this.chart.resize)
-    this.listeners = true
-  },
-
-  _tooltipFormatter (data) {
-    data = data[0]
-    return `<b>${data.axisValue} h:</b><br> ${data.data} €/KWh`
   },
 
   _toggleNavActive (value) {

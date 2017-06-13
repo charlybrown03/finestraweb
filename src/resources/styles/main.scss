@@ -3,9 +3,13 @@
 
 // Vendors
 @import "~bootstrap/scss/bootstrap";
+@import "~select2/dist/css/select2";
 
 // Variables
 @import "variables";
+
+// Partials
+@import "partials/select2";
 
 // Blocks
 @import "blocks/body";

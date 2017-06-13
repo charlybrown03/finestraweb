@@ -12,4 +12,21 @@ header {
     top: 2rem;
     width: 5rem;
   }
+
+  .nav-item {
+    color: $color-black;
+    cursor: pointer;
+
+    .nav-link {
+
+      &:hover {
+        border-color: transparent;
+      }
+
+      &.active {
+        background-color: lighten($color-background-header, 5%);
+        color: $color-black;
+      }
+    }
+  }
 }

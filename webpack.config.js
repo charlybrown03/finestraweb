@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -9,11 +10,11 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].js',
-    publicPath: '/public'
+    filename: '[name].js'
   },
   devServer: {
-    contentBase: path.resolve(__dirname, './src')
+    contentBase: path.resolve(__dirname, './'),
+    port: 9000
   },
   module: {
     rules: [{
@@ -48,5 +49,18 @@ module.exports = {
       test: /\.hbs$/,
       loader: "handlebars-loader"
     }]
-  }
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      hash: false,
+      favicon: './resources/images/favicon.ico',
+      filename: 'index.html',
+      inject: false,
+      minify: {
+        collapseWhitespace: true
+      }
+    })
+  ]
 }

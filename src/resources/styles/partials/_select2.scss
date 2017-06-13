@@ -1,0 +1,18 @@
+.select2-container--default {
+
+  .select2-selection {
+    height: 2.375rem;
+
+    .select2-selection__arrow {
+      height: 2.375rem;
+    }
+
+    .select2-selection__rendered {
+      line-height: 2.375rem;
+    }
+  }
+
+  .select2-results__option--highlighted[aria-selected] {
+    background-color: $color-background-header;
+  }
+}
