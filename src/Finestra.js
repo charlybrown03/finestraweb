@@ -58,7 +58,7 @@ const Finestra = Marionette.Application.extend({
       silent: false
     })
 
-    this.navigate('/')
+    this.navigate(window.location.pathname || '/')
   }
 
 })
