@@ -1,0 +1,13 @@
+@mixin font-face($font-family, $file-path, $font-weight, $font-style) {
+  $base-path: "/fonts/";
+
+  @font-face {
+    font-family: $font-family;
+      src: url("#{$base-path}#{$file-path}.eot");
+      src: url("#{$base-path}#{$file-path}.eot?#iefix") format("embedded-opentype"),
+           url("#{$base-path}#{$file-path}.woff") format("woff"),
+           url("#{$base-path}#{$file-path}.ttf") format("truetype");
+    font-weight: $font-weight;
+    font-style: $font-style;
+  }
+}

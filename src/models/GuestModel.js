@@ -5,11 +5,21 @@ const GuestModel = BaseModel.extend({
   defaults: {
     name: '',
     surname: '',
-    drink: '',
-    complement: ''
+    drinkCode: '',
+    complementCode: ''
   },
 
-  endpoint: 'guest'
+  endpoint: 'guest',
+
+  validate (obj) {
+    const errors = []
+
+    _.each(obj, (value, key) => {
+      if (!value) errors.push(key)
+    })
+
+    if (errors.length) return errors
+  }
 
 })
 

@@ -5,8 +5,29 @@ html, body {
   background-size: 100%;
   background-image: url("../images/textura.jpg");
 
-  input {
-    font-size: $default-font-size;
-    font-family: $default-font-family;
+
+}
+
+input,
+.btn {
+  font-size: $default-font-size;
+  font-family: $default-font-family;
+}
+
+.btn {
+  cursor: pointer;
+
+  &.btn-primary {
+    background-color: darken($color-background-header, 15%);
+    border-color: lighten($color-background-header, 10%);
+    color: $color-black;
+
+    &:hover {
+      background-color: darken($color-background-header, 20%);
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 }

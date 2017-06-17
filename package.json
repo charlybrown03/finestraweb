@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Technical Frontend Test - HolaLuz",
   "main": "index.js",
+  "repository": "git@github.com:charlybrown03/finestraweb.git",
   "scripts": {
     "clean": "rm -rf dist",
     "test": "echo \"Error: no test specified\" && exit 1",

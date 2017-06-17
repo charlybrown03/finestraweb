@@ -5,10 +5,23 @@
   padding: 5rem 2rem;
   margin: 4rem 0 7rem;
 
+  .button__container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .has-danger {
+
+    .form-control {
+      border-width: 2px;
+    }
+  }
+
   .form-group {
 
     label {
       font-weight: bold;
+      color: black;
     }
   }
 }

@@ -11,13 +11,15 @@ const FormView = ContentView.extend({
   ui: {
     drink: '.drink_select',
     complement: '.complement_select',
-    input: 'input'
+    input: 'input',
+    submit: '.submit__button'
   },
 
   events: {
     'change @ui.drink': 'onChangeDrink',
     'change @ui.complement': 'onChangeComplement',
-    'keyup @ui.input': 'onInput'
+    'keyup @ui.input': 'onInput',
+    'click @ui.submit': 'onClickSubmit'
   },
 
   onRender () {
@@ -25,19 +27,52 @@ const FormView = ContentView.extend({
   },
 
   onChangeDrink (e) {
-    this._setAttr('drink', e.currentTarget.value)
+    this._cleanErrors()
+    this._setAttr('drinkCode', e.currentTarget.value)
   },
 
   onChangeComplement (e) {
-    this._setAttr('complement', e.currentTarget.value)
+    this._cleanErrors()
+    this._setAttr('complementCode', e.currentTarget.value)
   },
 
   onInput (e) {
+    this._cleanErrors()
     const $el = $(e.currentTarget)
     const attr = $el.data('attr')
     const value = $el.val()
 
     this._setAttr(attr, value)
+  },
+
+  onClickSubmit () {
+    this.model.save()
+  },
+
+  onInvalid (model, errors) {
+    const $el = this.$el
+    _.each(errors, (error) => {
+      if (error.indexOf('Code') >= 0) error = error.replace('Code', '')
+
+      const selector = this.ui[error] || $el.find(`[data-attr="${error}"]`)
+      const tag = _.capitalize(selector.prop('tagName'))
+
+      this[`_process${tag}Error`](selector.parents('.form-group'))
+    })
+  },
+
+  _cleanErrors () {
+    const $el = this.$el
+    $el.find('.form-group').removeClass('has-danger')
+    $el.find('.select2-selection').removeClass('has-danger')
+  },
+
+  _processInputError (parent) {
+    parent.addClass('has-danger')
+  },
+
+  _processSelectError (parent) {
+    parent.find('.select2-selection').addClass('has-danger')
   },
 
   _initSelect2 () {

@@ -3,6 +3,9 @@
   .select2-selection {
     height: 2.375rem;
 
+    &.has-danger {
+      border: 2px solid $color-error;
+    }
     .select2-selection__arrow {
       height: 2.375rem;
     }
