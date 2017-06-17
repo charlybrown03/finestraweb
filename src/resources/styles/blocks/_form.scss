@@ -6,8 +6,11 @@
   margin: 4rem 0 7rem;
 
   .button__container {
-    display: flex;
-    flex-direction: row-reverse;
+
+    .btn {
+      float: right;
+      margin-top: 1rem;
+    }
   }
 
   .has-danger {
