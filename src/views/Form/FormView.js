@@ -61,6 +61,19 @@ const FormView = ContentView.extend({
     })
   },
 
+  onRequest () {
+    this.ui.submit.prop('disabled', true)
+  },
+
+  onSync () {
+    App.navigate('guests')
+  },
+
+  onError () {
+    this.ui.submit.prop('disabled', false)
+    console.error('Something went wrong')
+  },
+
   _cleanErrors () {
     const $el = this.$el
     $el.find('.form-group').removeClass('has-danger')

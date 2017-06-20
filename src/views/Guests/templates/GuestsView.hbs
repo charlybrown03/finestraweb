@@ -1,3 +1,29 @@
-<div class="">
-  Holiiiii
-</div>
+<section>
+  <div class="container">
+    <div class="form__container">
+      <table class="table table-striped">
+        <thead>
+          <th>Nombre</th>
+          <th>Bebida</th>
+          <th>Acompañamiento</th>
+        </thead>
+        <tbody>
+          <tr>
+            {{#unless items}}
+              <td colspan="3">No hay nadie apuntado aún</td>
+            {{else}}
+              {{#each items}}
+                <tr>
+                  <td>{{ name }} {{ surname }}</td>
+                  <td>{{ drink }}</td>
+                  <td>{{ complement }}</td>
+                </tr>
+              {{/each}}
+            {{/unless}}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{{log this}}

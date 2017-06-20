@@ -12,6 +12,8 @@ import ComplementsCollection from './collections/ComplementsCollection'
 
 const Finestra = Marionette.Application.extend({
 
+  region: '#app',
+
   region: {
     el: '#app',
     replaceElement: true
