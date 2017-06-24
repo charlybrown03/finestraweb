@@ -10,10 +10,21 @@ const GuestsCollection = BaseCollection.extend({
 
   initialize () {
     this.listenTo(this, 'request', this.onRequest, this)
+    this.listenTo(this, 'sync', this.onSync, this)
+    this.listenTo(this, 'error', this.onError, this)
   },
 
   onRequest () {
     this.errorMessage = null
+    this.isRequesting = true
+  },
+
+  onSync () {
+    this.isRequesting = false
+  },
+
+  onError () {
+    this.isRequesting = false
   }
 
 })

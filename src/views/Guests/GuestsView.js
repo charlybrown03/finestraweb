@@ -8,12 +8,14 @@ const GuestsView = Marionette.View.extend({
 
   collectionEvents: {
     'sync': 'render',
+    'request': 'render',
     'error': 'onError'
   },
 
   serializeData () {
     return {
       items: this.collection.toJSON(),
+      requesting: this.collection.isRequesting,
       errorMessage: this.collection.errorMessage
     }
   },

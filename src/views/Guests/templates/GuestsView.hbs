@@ -9,25 +9,27 @@
         </thead>
         <tbody>
           <tr>
-            {{#unless items}}
+            {{#if requesting}}
               <td colspan="3">
-                {{#if errorMessage}}
-                  <span>No hay nadie apuntado aún</span>
-                {{else}}
-                  <div class="loading-spinner">
-                    <div class="loading-spinner__item"></div>
-                  </div>
-                {{/if}}
+                <div class="loading-spinner">
+                  <div class="loading-spinner__item"></div>
+                </div>
               </td>
             {{else}}
-              {{#each items}}
-                <tr>
-                  <td>{{ name }} {{ surname }}</td>
-                  <td>{{ drink }}</td>
-                  <td>{{ complement }}</td>
-                </tr>
-              {{/each}}
-            {{/unless}}
+              {{#unless items}}
+                <td colspan="3">
+                  <span>No hay nadie apuntado aún</span>
+                </td>
+              {{else}}
+                {{#each items}}
+                  <tr>
+                    <td>{{ name }} {{ surname }}</td>
+                    <td>{{ drink }}</td>
+                    <td>{{ complement }}</td>
+                  </tr>
+                {{/each}}
+              {{/unless}}
+            {{/if}}
           </tr>
         </tbody>
       </table>

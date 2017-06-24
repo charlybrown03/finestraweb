@@ -10,6 +10,34 @@
     .btn {
       float: right;
       margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:disabled {
+        .loading-spinner {
+          display: block;
+        }
+      }
+
+      .button__text {
+        flex-basis: 100%;
+      }
+
+      .loading-spinner {
+        background-color: transparent;
+        padding: 0;
+        display: none;
+        width: 1rem;
+        margin-right: .75rem;
+
+        .loading-spinner__item {
+          width: 1rem;
+          height: 1rem;
+          border: 2px solid rgba(233, 208, 175, 0.8);
+          border-top: 2px solid rgba(206, 149, 75, 0.8);
+        }
+      }
     }
 
     @include mq($until: lg) {
