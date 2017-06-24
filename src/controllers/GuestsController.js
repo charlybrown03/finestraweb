@@ -10,12 +10,13 @@ const GuestsController = Marionette.Object.extend({
   showGuests () {
     const collection = new GuestsCollection()
     const view = new GuestsView({ collection: collection})
-    $.when(view.collection.fetch()).then(this._renderView.bind(view), this._renderView.bind(view))
+    this._renderView(view)
+
+    view.collection.fetch()
   },
 
-  _renderView () {
-    console.log('holi')
-    Radio.channel('layout').trigger('render:region', 'content', this)
+  _renderView (view) {
+    Radio.channel('layout').trigger('render:region', 'content', view)
   }
 
 })

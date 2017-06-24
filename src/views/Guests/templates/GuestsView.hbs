@@ -10,7 +10,15 @@
         <tbody>
           <tr>
             {{#unless items}}
-              <td colspan="3">No hay nadie apuntado aún</td>
+              <td colspan="3">
+                {{#if errorMessage}}
+                  <span>No hay nadie apuntado aún</span>
+                {{else}}
+                  <div class="loading-spinner">
+                    <div class="loading-spinner__item"></div>
+                  </div>
+                {{/if}}
+              </td>
             {{else}}
               {{#each items}}
                 <tr>
@@ -26,4 +34,3 @@
     </div>
   </div>
 </section>
-{{log this}}

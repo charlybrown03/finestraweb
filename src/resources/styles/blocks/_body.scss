@@ -31,3 +31,29 @@ input,
     }
   }
 }
+
+.loading-spinner {
+  background-color: rgba(224,224,224,.3);
+  margin: 0 auto;
+  padding: .5rem;
+  width: 4rem;
+
+  .loading-spinner__item {
+    border: .5rem solid lighten($color-background-header, 10%);
+    border-top: .5rem solid darken($color-background-header, 15%);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+}

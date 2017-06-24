@@ -6,7 +6,15 @@ const GuestsCollection = BaseCollection.extend({
 
   endpoint: 'guests',
 
-  model: GuestModel
+  model: GuestModel,
+
+  initialize () {
+    this.listenTo(this, 'request', this.onRequest, this)
+  },
+
+  onRequest () {
+    this.errorMessage = null
+  }
 
 })
 
