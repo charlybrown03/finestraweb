@@ -9,10 +9,10 @@ import CommentsView from '../views/Comments/CommentsView'
 const CommentsController = Marionette.Object.extend({
 
   showComments () {
-    // const model = new CommentModel({ comment: 'holi', author: 'eres tu?' })
-    // model.save()
+    const model = new CommentModel()
     const collection = new CommentsCollection()
-    const view = new CommentsView({ collection: collection })
+
+    const view = new CommentsView({ model: model, collection: collection })
     Radio.channel('layout').trigger('render:region', 'content', view)
 
     view.collection.fetch()

@@ -5,6 +5,49 @@
   border: 2px double $color-black;
 }
 
+.c-comment-list__new-comment {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  border-bottom: 1px solid $color-background-header;
+  padding: 1rem;
+}
+
+.c-comment-list__button {
+  @extend .btn;
+  @extend .btn-primary;
+
+  color: $color-black;
+}
+
+.c-comment-list__button--submit {
+  margin-top: 1rem;
+}
+
+.c-comment-list__button--big {
+  font-size: 3rem;
+  padding: 0 1.5rem;
+}
+
+.c-comment-list-new-comment__form {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  max-height: 0;
+	overflow: hidden;
+
+	transition: all 0.3s;
+
+  &.show {
+    max-height: 100vh;
+  }
+
+  .form-group {
+    flex: 1 1 100%;
+  }
+}
+
 .c-comment-list__comment {
   padding: 1rem;
   margin: .5rem;

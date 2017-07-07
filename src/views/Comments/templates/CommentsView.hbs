@@ -1,7 +1,35 @@
 <section>
   <div class="w-content">
-    <div class="form__container">
+    <div class="c-content__box">
       <div class="c-comment__list">
+        <div class="c-comment-list__new-comment">
+          <button class="c-comment-list__button js-expand__button">
+            <div class="toggle__icon">
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+          <form class="c-comment-list-new-comment__form">
+            <div class="form-group row">
+              <label class="col-12 col-lg-2 col-form-label">Autor:</label>
+              <div class="col-12 col-lg-10">
+                <input name="author" class="author__input form-control" type="text" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-12 col-lg-2 col-form-label">Escribe tus mejores deseos:</label>
+              <div class="col-12 col-lg-10">
+                <textarea name="comment" class="form-control" rows="8" required></textarea>
+              </div>
+            </div>
+            <button type="submit" class="c-comment-list__button c-comment-list__button--submit">
+              <!-- <div class="loading-spinner">
+                <div class="loading-spinner__item"></div>
+              </div> -->
+              <span>Enviar!</span>
+            </button>
+          </form>
+        </div>
         {{#each items}}
           <div class="c-comment-list__comment">
             <h5 class="c-comment__title">{{ author }}</h5>
