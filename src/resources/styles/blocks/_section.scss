@@ -15,3 +15,9 @@ section {
     font-weight: bold;
   }
 }
+
+.w-content {
+  width: 992px;
+  max-width: calc(100% - 2rem);
+  margin: 0 auto;
+}

@@ -1,6 +1,6 @@
 header {
   background-color: $color-background-header;
-  padding-top: 5rem;
+  padding-top: 2rem;
 
   .timon {
     font-family: $secondary-font-family;
@@ -11,6 +11,7 @@ header {
 
     p {
       user-select: none;
+      padding-left: 2rem;
     }
 
     .subtitle {
@@ -26,7 +27,7 @@ header {
       width: 6rem;
       position: absolute;
       left: 17%;
-      top: 5rem;
+      top: 2rem;
 
     }
 
@@ -43,13 +44,18 @@ header {
     left: 3rem;
     position: absolute;
     padding: 3rem;
-    top: 2rem;
+    top: 1rem;
     width: 5rem;
   }
 
   .nav-item {
     color: $color-black;
     cursor: pointer;
+
+    @include mq($until: lg) {
+      flex-grow: 1;
+      text-align: center;
+    }
 
     .nav-link {
 
@@ -68,7 +74,11 @@ header {
 @include mq($from: xs, $until: lg) {
 
   header {
-    padding-top: 10rem;
+    padding-top: 2rem;
+
+    .icon {
+      top: 7rem;
+    }
 
     .timon {
       padding-bottom: 0;

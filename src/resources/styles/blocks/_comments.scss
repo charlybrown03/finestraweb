@@ -1,0 +1,20 @@
+.c-comment__list {
+  background-color: $color-white;
+  padding: 1rem;
+  border-radius: .8rem;
+  border: 2px double $color-black;
+}
+
+.c-comment-list__comment {
+  padding: 1rem;
+  margin: .5rem;
+  border-bottom: 1px solid $color-background-header;
+}
+
+.c-comment__title {
+  margin-bottom: .5rem;
+}
+
+.c-comment__text {
+  padding: 0 .5rem;
+}
