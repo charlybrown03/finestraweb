@@ -1,8 +1,8 @@
-import Marionette from 'backbone.marionette'
+import ContentView from '../Common/ContentView'
 
 import CommentsViewTemplate from './templates/CommentsView.hbs'
 
-const CommentsView = Marionette.View.extend({
+const CommentsView = ContentView.extend({
 
   template: CommentsViewTemplate,
 
@@ -12,7 +12,8 @@ const CommentsView = Marionette.View.extend({
 
   ui: {
     toggleButton: '.js-expand__button',
-    form: '.c-comment-list-new-comment__form'
+    form: '.c-comment-list-new-comment__form',
+    submit: '.c-comment-list__button--submit'
   },
 
   events: {
@@ -34,12 +35,23 @@ const CommentsView = Marionette.View.extend({
   onSubmitForm () {
     const data = this._getFormData()
 
-    this.model.save(data).then(() => {
-      this.onClickToggleButton()
-      _.delay(() => this.collection.fetch(), 300)
-    })
+    this.model.save(data)
 
     return false
+  },
+
+  onRequest () {
+    this.ui.submit.prop('disabled', true)
+  },
+
+  onSync () {
+    this.onClickToggleButton()
+    _.delay(() => this.collection.fetch(), 300)
+  },
+
+  onError () {
+    this.ui.submit.prop('disabled', false)
+    console.error('Something went wrong')
   },
 
   _getFormData () {

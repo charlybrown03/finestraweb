@@ -10,6 +10,14 @@ section {
       color: $color-white;
       text-align: center;
     }
+
+    &.table-responsive {
+      display: table;
+    }
+
+    @include mq($until: lg) {
+      font-size: .7rem;
+    }
   }
 
   td {
@@ -19,6 +27,6 @@ section {
 
 .w-content {
   width: 992px;
-  max-width: calc(100% - 2rem);
+  max-width: calc(100vw - 2rem);
   margin: 0 auto;
 }

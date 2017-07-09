@@ -1,70 +1,91 @@
 header {
   background-color: $color-background-header;
-  padding-top: 2rem;
 
   .timon {
     font-family: $secondary-font-family;
-    font-size: 3rem;
-    padding: 0 25%;
-    padding-bottom: 3rem;
-    text-align: justify;
+    font-size: 2.5rem;
+    display: flex;
+    align-content: stretch;
 
-    p {
-      user-select: none;
-      padding-left: 2rem;
-    }
+    padding: 1rem;
+  }
 
     .subtitle {
       font-size: 2rem;
       text-align: right;
+
+      @include mq($until: lg) {
+        font-size: 1rem;
+      }
     }
 
-    .timon--icon {
-      background-image: $icon-timon;
-      background-repeat: no-repeat;
-      background-size: 6rem;
-      height: 6rem;
-      width: 6rem;
-      position: absolute;
-      left: 17%;
-      top: 2rem;
+    .text {
+      display: flex;
+      align-items: center;
+      flex: 0 1 100%;
+      justify-content: center;
 
+      p {
+        user-select: none;
+
+        @include mq($until: lg) {
+          font-size: 2rem;
+        }
     }
-
   }
 
   .icon {
+    flex: 0 0 3rem;
     background-image: $icon-logo;
     background-repeat: no-repeat;
     background-size: 5rem;
     border: double $color-black;
     border-radius: 100%;
-    float: left;
+
     height: 5rem;
-    left: 3rem;
-    position: absolute;
     padding: 3rem;
     top: 1rem;
     width: 5rem;
+
+    @include mq($until: lg) {
+      background-size: 3rem;
+      width: 3rem;
+      height: 3rem;
+      padding: 1.7rem;
+    }
   }
 
   .nav-item {
+    align-items: center;
+
     color: $color-black;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    &.active {
+      background-color: lighten($color-background-header, 5%);
+    }
 
     @include mq($until: lg) {
-      flex-grow: 1;
+      flex: 1 1 33%;
       text-align: center;
+      align-self: stretch;
+    }
+
+    @include mq($until: xs) {
+      font-size: .8rem;
     }
 
     .nav-link {
-
       &:hover {
         border-color: transparent;
       }
 
       &.active {
-        background-color: lighten($color-background-header, 5%);
+        background-color: transparent;
+        border: 0;
         color: $color-black;
       }
     }
@@ -74,20 +95,16 @@ header {
 @include mq($from: xs, $until: lg) {
 
   header {
-    padding-top: 2rem;
+    padding-top: 1rem;
 
-    .icon {
-      top: 7rem;
+    p {
+      margin: 0;
+      align-self: center;
+      margin-left: .8rem;
     }
 
     .timon {
-      padding-bottom: 0;
-
-      .timon--icon {
-        position: relative;
-        left: 0;
-        top: -5rem;
-      }
+      padding: 0 1rem;
     }
   }
 

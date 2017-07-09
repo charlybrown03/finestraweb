@@ -33,6 +33,7 @@ const HeaderView = Marionette.View.extend({
       const isActive = $el.data('action') === location
 
       $el.toggleClass('active', isActive)
+      $el.parent().toggleClass('active', isActive)
     })
   },
 

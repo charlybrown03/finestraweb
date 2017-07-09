@@ -8,11 +8,18 @@ footer {
   position: fixed;
   width: 100%;
 
-  .text_company {
-    float: left;
-  }
+  display: flex;
+  justify-content: space-between;
 
-  .text_year {
-    float: right;
+  // .text_company {
+  //   float: left;
+  // }
+  //
+  // .text_year {
+  //   float: right;
+  // }
+
+  @include mq($until: lg) {
+    font-size: .7rem;
   }
 }
