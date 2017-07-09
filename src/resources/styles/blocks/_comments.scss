@@ -46,8 +46,6 @@
   max-height: 0;
 	overflow: hidden;
 
-	transition: all 0.5s;
-
   &.show {
     max-height: 100%;
   }
