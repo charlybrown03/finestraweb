@@ -1,8 +1,8 @@
-import Marionette from 'backbone.marionette'
+import ContentView from '../Common/ContentView'
 
 import GuestsViewTemplate from './templates/GuestsView.hbs'
 
-const GuestsView = Marionette.View.extend({
+const GuestsView = ContentView.extend({
 
   template: GuestsViewTemplate,
 

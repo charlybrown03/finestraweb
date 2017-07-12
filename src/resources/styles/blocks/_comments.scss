@@ -3,6 +3,15 @@
   padding: 1rem;
   border-radius: .8rem;
   border: 2px double $color-black;
+
+  @include mq($from: xs, $until: md) {
+    padding: 0;
+  }
+}
+
+.c-comment__date {
+  font-size: .8rem;
+  margin-bottom: 1rem;
 }
 
 .c-comment-list__new-comment {

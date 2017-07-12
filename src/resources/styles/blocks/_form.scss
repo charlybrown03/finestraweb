@@ -1,9 +1,14 @@
 .c-content__box {
-  background-color: $color-background-header;
-  border-radius: 1rem;
-  border: double $color-black 1px;
-  padding: 5rem 2rem;
-  margin: 4rem 0 7rem;
+  padding: 1rem;
+  margin: 0 -1rem -2rem;
+
+  @include mq($from: md) {
+    background-color: $color-background-header;
+    border-radius: 1rem;
+    border: 1px double $color-black;
+    padding: 5rem 2rem;
+    margin: 4rem 0 7rem;
+  }
 
   .button__container {
 
