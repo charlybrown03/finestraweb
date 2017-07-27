@@ -1,0 +1,35 @@
+{
+  "backgroundColor": "#fff",
+  "title": {
+    "text": "",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "color": "#000"
+    }
+  },
+  "legend": {
+    "x": "left",
+    "textStyle": {
+      "color": "#000"
+    },
+    "data": []
+  },
+  "tooltip": {
+    "trigger": "item"
+  },
+  "series": [
+    {
+      "type": "pie",
+      "center": ["50%", "50%"],
+      "data": [],
+      "label": {
+        "normal": {
+          "show": false
+        }
+      },
+      "animationType": "scale",
+      "animationEasing": "elasticOut"
+    }
+  ]
+}

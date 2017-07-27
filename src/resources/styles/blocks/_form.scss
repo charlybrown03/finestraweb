@@ -6,8 +6,12 @@
     background-color: $color-background-header;
     border-radius: 1rem;
     border: 1px double $color-black;
-    padding: 5rem 2rem;
+    padding: 2rem;
     margin: 4rem 0 7rem;
+  }
+
+  @include mq($from: lg) {
+    padding: 5rem 2rem;
   }
 
   .button__container {

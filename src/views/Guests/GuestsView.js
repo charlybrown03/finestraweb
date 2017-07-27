@@ -12,6 +12,14 @@ const GuestsView = ContentView.extend({
     'error': 'onError'
   },
 
+  ui: {
+    summaryButton: '.js-summary-button'
+  },
+
+  events: {
+    'click @ui.summaryButton': 'onClickSummaryButton'
+  },
+
   serializeData () {
     return {
       items: this.collection.toJSON(),
@@ -23,6 +31,10 @@ const GuestsView = ContentView.extend({
   onError () {
     this.collection.errorMessage = 'No hay nadie apuntado aún'
     this.render()
+  },
+
+  onClickSummaryButton () {
+    App.navigate('/summary')
   }
 
 })

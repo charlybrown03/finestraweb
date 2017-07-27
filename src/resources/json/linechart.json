@@ -1,0 +1,46 @@
+{
+  "backgroundColor": "#fff",
+  "title": {
+    "text": ""
+  },
+  "tooltip" : {
+    "trigger": "axis"
+  },
+  "legend": {
+    "data":[]
+  },
+  "grid": {
+    "left": "3%",
+    "right": "4%",
+    "bottom": "3%",
+    "containLabel": true
+  },
+  "xAxis" : [
+    {
+      "type" : "category",
+      "boundaryGap" : false,
+      "data" : []
+    }
+  ],
+  "yAxis" : [
+    {
+      "type" : "value"
+    }
+  ],
+  "series" : [
+    {
+      "name":"",
+      "type":"line",
+      "data":[],
+      "label": {
+        "normal": {
+          "textStyle": {
+            "color": "#000"
+          }
+        }
+      },
+      "animationType": "scale",
+      "animationEasing": "elasticOut"
+    }
+  ]
+}
