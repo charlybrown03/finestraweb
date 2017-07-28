@@ -71,12 +71,10 @@ const SummaryView = ContentView.extend({
     const collection = this.getOption(key)
     let option = _.cloneDeep(linechartOption)
 
-    option.title.text = _.capitalize(key)
-
     option.xAxis[0].data = collection.map((model) => model.get(key.slice(0, -1)))
     option.series[0].data = collection.map((model) => model.get('ammount'))
 
-    chart.setOption(option)
+    chart.setOption(option, true)
   },
 
   _buildPieChart (chart, key) {
@@ -91,7 +89,7 @@ const SummaryView = ContentView.extend({
       }
     })
 
-    chart.setOption(option)
+    chart.setOption(option, true)
   },
 
   _setCustomOptions () {
