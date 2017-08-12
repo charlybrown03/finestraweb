@@ -1,12 +1,13 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const GoogleFontsPlugin = require('google-fonts-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const GoogleFontsPlugin = require('google-fonts-webpack-plugin')
 
-const CHUNKS = {
-  vendor: 0,
-  app: 1
-}
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+const SOUCE_MAP_OPT = { sourceMap: !IS_PRODUCTION, minimize: IS_PRODUCTION }
+
+const HASH = '[hash:6]'
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -16,7 +17,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].js'
+    filename: IS_PRODUCTION ? `[name]-${HASH}.js` : '[name].js'
   },
   devServer: {
     contentBase: path.resolve(__dirname, './'),
@@ -34,7 +35,7 @@ module.exports = {
       use: [{
         loader: 'babel-loader',
         options: {
-          presets: ['es2015']
+          presets: [ 'es2015' ]
         }
       }]
     }, {
@@ -43,19 +44,17 @@ module.exports = {
         loader: 'file-loader'
       }]
     }, {
-      test: /\.scss$/,
-      use: [{
-        loader: 'style-loader'
-      }, {
-        loader: 'css-loader'
-      }, {
-        loader: 'sass-loader',
-        options: {
-          includePaths: [
-            path.resolve(__dirname, 'src/resources/styles/main.scss')
-          ]
-        }
-      }]
+      test: /\.s?css$/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: SOUCE_MAP_OPT
+        }, {
+          loader: 'sass-loader',
+          options: SOUCE_MAP_OPT
+      } ]
+      })
     }, {
       test: /\.hbs$/,
       loader: "handlebars-loader"
@@ -65,18 +64,17 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
-      hash: false,
+      hash: IS_PRODUCTION,
       favicon: './resources/images/favicon.ico',
       filename: 'index.html',
       inject: true,
       chunks: [ 'vendor', 'app' ],
-      chunksSortMode: function (a, b) {
-        return CHUNKS[a.names[0]]
-      },
+      chunksSortMode: (a, b) => a.names[0] > a.names[1] ? -1 : 1,
       minify: {
-        collapseWhitespace: true
+        collapseWhitespace: IS_PRODUCTION
       }
     }),
+    new ExtractTextPlugin(IS_PRODUCTION ? `[name]-${HASH}.css` : '[name].css'),
     new GoogleFontsPlugin({
       fonts: [
         { family: 'Love Ya Like A Sister' },
