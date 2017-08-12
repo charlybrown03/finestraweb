@@ -10,6 +10,8 @@ const LayoutView = Marionette.View.extend({
 
   template: LayoutViewTemplate,
 
+  id: 'app',
+
   regions: {
     header: {
       el: '.app__header',
