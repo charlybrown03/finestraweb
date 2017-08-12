@@ -2,6 +2,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const GoogleFontsPlugin = require('google-fonts-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack')
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -31,7 +32,7 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: [/node_modules/],
+      exclude: [ /node_modules/ ],
       use: [{
         loader: 'babel-loader',
         options: {
@@ -40,9 +41,23 @@ module.exports = {
       }]
     }, {
       test: /\.jpg|png$/,
-      use: [{
-        loader: 'file-loader'
-      }]
+      loaders: [
+        'file-loader',
+        {
+          loader: 'image-webpack-loader',
+          query: {
+            bypassOnDebug: true,
+            progressive: true,
+            optipng: {
+              optimizationLevel: 7
+            },
+            pngquant: {
+              quality: '65-90',
+              speed: 4
+            }
+          }
+        }
+      ]
     }, {
       test: /\.s?css$/,
       loader: ExtractTextPlugin.extract({
@@ -62,6 +77,13 @@ module.exports = {
   },
 
   plugins: [
+    new ExtractTextPlugin(IS_PRODUCTION ? `[name]-${HASH}.css` : '[name].css'),
+    new GoogleFontsPlugin({
+      fonts: [
+        { family: 'Love Ya Like A Sister' },
+        { family: 'Tangerine' }
+      ]
+    }),
     new HtmlWebpackPlugin({
       template: './index.html',
       hash: IS_PRODUCTION,
@@ -74,12 +96,14 @@ module.exports = {
         collapseWhitespace: IS_PRODUCTION
       }
     }),
-    new ExtractTextPlugin(IS_PRODUCTION ? `[name]-${HASH}.css` : '[name].css'),
-    new GoogleFontsPlugin({
-      fonts: [
-        { family: 'Love Ya Like A Sister' },
-        { family: 'Tangerine' }
-      ]
+    new UglifyJSPlugin({
+      test: /\.js$/,
+      exclude: [ /node_modules/ ],
+      compress: IS_PRODUCTION,
+      beautify: !IS_PRODUCTION
+    }),
+    new webpack.LoaderOptionsPlugin({
+      debug: !IS_PRODUCTION
     })
   ]
 }
