@@ -1,10 +1,15 @@
+const ChangeExtensionPlugin = require('change-extension-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const GoogleFontsPlugin = require('google-fonts-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack')
 
-const SOUCE_MAP_OPT = { sourceMap: true, minimize: false }
+const SOUCE_MAP_OPT = { sourceMap: false, minimize: true }
+
+const HASH = '[hash:6]'
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -14,16 +19,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].js'
-  },
-  devServer: {
-    contentBase: path.resolve(__dirname, './'),
-    port: 9000,
-    historyApiFallback: true,
-    overlay: {
-      warnings: true,
-      errors: true
-    }
+    filename: `[name]-${HASH}.js`
   },
   module: {
     rules: [{
@@ -38,7 +34,20 @@ module.exports = {
     }, {
       test: /\.jpg|png$/,
       loaders: [
-        'file-loader'
+        'file-loader',
+        {
+          loader: 'image-webpack-loader',
+          query: {
+            progressive: true,
+            optipng: {
+              optimizationLevel: 7
+            },
+            pngquant: {
+              quality: '65-90',
+              speed: 4
+            }
+          }
+        }
       ]
     }, {
       test: /\.s?css$/,
@@ -59,7 +68,15 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('[name].css'),
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      filename: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.(js|css)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    new ExtractTextPlugin(`[name]-${HASH}.css`),
     new GoogleFontsPlugin({
       fonts: [
         { family: 'Love Ya Like A Sister' },
@@ -75,8 +92,14 @@ module.exports = {
       chunks: [ 'vendor', 'app' ],
       chunksSortMode: (a, b) => a.names[0] > a.names[1] ? -1 : 1,
       minify: {
-        collapseWhitespace: false
+        collapseWhitespace: true
       }
+    }),
+    new UglifyJSPlugin({
+      test: /\.js$/,
+      exclude: [ /node_modules/ ],
+      compress: true,
+      beautify: false
     })
   ]
 }
